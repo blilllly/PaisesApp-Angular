@@ -35,7 +35,12 @@
     <h3>Traduciones</h3>
     <div class="row">
         <div class="col">
-            <span class="badge bg-primary mr-1"></span>
+            <span
+                *ngFor="let b of badges"
+                class="badge bg-primary ml-5"
+            >
+                {{ b }}
+            </span>
         </div>
     </div>
 </ng-template>

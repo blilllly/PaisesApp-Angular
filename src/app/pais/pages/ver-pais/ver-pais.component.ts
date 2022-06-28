@@ -13,6 +13,7 @@ import { PaisService } from '../../services/pais.service';
 export class VerPaisComponent implements OnInit {
 
   pais!: Country[];
+  badges: string[] = [];
 
   constructor(
     private activateRoute: ActivatedRoute,
@@ -26,8 +27,15 @@ export class VerPaisComponent implements OnInit {
         switchMap( ({ id }) => this.paisService.getPaisPorId( id )),
         tap( console.log )
       )
+      // .subscribe( pais => { console.log(this.pais = pais) });
       .subscribe( pais => {
-        console.log(this.pais = pais)
+        this.pais = pais;
+        const {translations} = this.pais[0];
+        const elementos = Object.values(translations);
+
+        for (let index = 0; index < elementos.length; index++) {
+          this.badges.push(elementos[index].common);
+        }
       });
 
     // this.activateRoute.params
